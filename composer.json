@@ -1,0 +1,15 @@
+{
+    "name": "root/test-uni",
+    "description": "package for inlamning 1",
+    "require": {
+        "monolog/monolog": "^1.22",
+        "guzzlehttp/guzzle": "^6.2"
+    },
+    "license": "BSD",
+    "authors": [
+        {
+            "name": "Morozbea",
+            "email": "morozbea@freemail.hu"
+        }
+    ]
+}
