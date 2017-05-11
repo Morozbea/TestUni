@@ -12,12 +12,14 @@ $log = new Logger('TestUni');
 $log->pushHandler(new StreamHandler('unicorns.log', Logger::INFO));
 
 $client = new Client();
-$res = $client->request('GET', 'http://unicorns.idioti.se/',[
+$id = $_GET['id'];
+$res = $client->request('GET', 'http://unicorns.idioti.se/'.$id,[
   "headers" => [
     "Accept" => "application/json"
   ]
 ]);
-$data = json_decode($res->getBody());
+$unicorn = json_decode($res->getBody());
+print_r($unicorn);
 
 
 
@@ -46,27 +48,21 @@ $data = json_decode($res->getBody());
  	<p style="border-bottom: 0.1px solid black;">
 		<div class="idEnhörning">
 			<h2>id på enhörningar</h2>
-
+			<input type="text" idFor="idUnic"><br>
+			<a href="index.php?id=<?php echo $unicorn->id ?>" class="btn btn-default">Visa alla Enhörningar!</a>
 
 			<p style="border-bottom: 0.1px solid black;">
 		</div>
-	<p>Alla Enhörningar: </p>
-		<div class="listofenhörning">
-      <form action="response.php" method="get">
-  			<ol>
 
-          <?php
-          foreach ($data as $unicorn) {
-            echo "<li class='left'>$unicorn->name</li><br>";
-          ?>
-            <a href="getUniSide.php?id=<?php echo $unicorn->id ?>" class="btn btn-default">Continue</a>
-            <?php
-     		    echo "<p style='border-bottom: 0.1px solid black;'><br>";
-          }
-          ?>
-  			</ol>
-      </form>
-		</div>
+    <img src="<?php echo $unicorn->image; ?>" alt="unicorn"><br>
+    <p style="width:200px"> <?php echo $unicorn->description; ?></p>
+    <p> <?php echo $unicorn->reportedBy; ?></p>
+    <p> <?php echo $unicorn->spottedWhen->date; ?></p>
+
+
+
+
+
 </body>
 
 </html>
