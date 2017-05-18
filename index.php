@@ -46,6 +46,16 @@ $data = json_decode($res->getBody());
  	<p style="border-bottom: 0.1px solid black;">
 		<div class="idEnhörning">
 			<h2>id på enhörningar</h2>
+      <div class="form-group">
+        <form action="getUniSide.php" method="get">
+                          <label for="id">Id number: </label>
+
+                          <input type="number" id="id" name="id" class="form-control">
+
+                          <input type="submit" value="Visa enhörning!" class="btn btn-success">
+                        </form>
+      </div>
+
 
 
 			<p style="border-bottom: 0.1px solid black;">
@@ -59,6 +69,7 @@ $data = json_decode($res->getBody());
           foreach ($data as $unicorn) {
             echo "<li class='left'>$unicorn->name</li><br>";
           ?>
+
             <a href="getUniSide.php?id=<?php echo $unicorn->id ?>" class="btn btn-default">Continue</a>
             <?php
      		    echo "<p style='border-bottom: 0.1px solid black;'><br>";
